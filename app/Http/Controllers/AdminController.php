@@ -9,7 +9,9 @@ use App\Mail\SendMail;
 use App\Models\User;
 use App\Repositories\SupplierRepository;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Response as FacadesResponse;
 
 class AdminController extends Controller
 {
@@ -100,4 +102,11 @@ class AdminController extends Controller
          return redirect()->route('admin.settings')->with('success','Successfully updated profile');
      }
 
+     public function downloadFile($id){
+
+        $supplier = $this->supplierRepo->findSupplierViaId($id);
+        $file = public_path()."/file/".$supplier->document_file;
+        $headers = array('Content-Type: application/zip',);
+        return FacadesResponse::download($file, $supplier->document_file ,$headers);
+    }
 }

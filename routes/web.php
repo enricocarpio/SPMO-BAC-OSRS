@@ -60,6 +60,8 @@ Route::group([
     Route::get('/settings',[AdminController::class, 'settings'])->name('settings');
     Route::post('/settings/{id}',[AdminController::class, 'settingsStore'])->name('settingsStore');
 
+    Route::get('/download/file/{id}',[AdminController::class, 'downloadFile'])->name('downloadFile');
+
 });
 
 
@@ -72,3 +74,5 @@ Route::get('/become-supplier',[HomeController::class,'becomeSupplier'])->name('b
 Route::post('/become-supplier',[HomeController::class,'becomeSupplierStore'])->name('becomeSupplierStore');
 
 
+
+ 
