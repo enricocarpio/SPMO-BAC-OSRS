@@ -35,9 +35,7 @@
                 <li class="nav-item ">
                   <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li> 
-                <li class="nav-item">
-                    <a class="nav-link" href="contact-us">Contact us</a>
-                  </li>
+           
                   <li class="nav-item">
                     <a class="nav-link" href="/white-list">Whitelist</a>
                   </li>
@@ -45,7 +43,9 @@
                     <a class="nav-link" href="/become-supplier">Become a supplier</a>
                   </li>
                
-               
+                  <li class="nav-item">
+                    <a class="nav-link" href="contact-us">Contact us</a>
+                  </li>
               </ul>
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
