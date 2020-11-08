@@ -1,5 +1,8 @@
 <div class="row">  
  <div class="offset-3  py-2">
+   @if(auth()->user())
+   <div class="text-center"><h6>Step <b>1</b> / 2 - Supplier Information</h6></div>
+   @endif
     <form method="POST" action="{{ route('admin.processSupplierStore',['id'=>$supplier->id ?? null]) }}">
         @csrf
         <div class="form-group">

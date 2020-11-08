@@ -2,7 +2,9 @@
     <div class="offset-2  py-2 mt-3">
         @if($supplier->document_file)
         <a href="{{ route('admin.downloadFile',['id'=>$supplier->id]) }}">Download file</a>
-        
+        @endif
+        @if(auth()->user())
+        <div class="text-center"><h6>Step <b>2</b> / 2 - Supplier Eligibiltiy</h6></div>
         @endif
     <form method="POST" class="mt-3" action="{{ route('admin.processEligibilityStore',['id'=>$supplier->id]) }}">
         @csrf
