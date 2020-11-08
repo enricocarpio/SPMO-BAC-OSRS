@@ -43,7 +43,7 @@
                   <p>Authorized Person: <b>{{$supplier->sales_representative}}</b></p>
                   <p>Date of Application: <b>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $supplier->created_at)->format('F d, Y')}}</b></p>
                   @if($supplier->document_file)
-                  <p>Document: <a href="{{ route('admin.downloadFile',['id'=>$supplier->id]) }}">{{$supplier->document_file}}</a></p>
+                  <p>Document submitted: <a href="{{ route('admin.downloadFile',['id'=>$supplier->id]) }}">{{$supplier->document_file}}</a></p>
                   @endif
                 </div>
             </div>

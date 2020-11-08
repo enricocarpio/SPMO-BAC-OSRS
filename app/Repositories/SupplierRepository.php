@@ -154,8 +154,11 @@ class SupplierRepository
     {
         $supplier = Supplier::findOrFail($id);
         if($supplier->document_file) {
-
-           
+            $file_path = public_path('file/'.$supplier->document_file);
+            if(File::exists($file_path))
+            {
+                File::delete($file_path);
+            }
         }
 
         if($supplier->user->photo_path)
