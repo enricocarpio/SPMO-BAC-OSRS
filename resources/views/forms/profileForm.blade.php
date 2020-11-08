@@ -6,6 +6,7 @@
             <img src="{{ asset('images/'.auth()->user()->photo_path) }}" class="img-thumbnail float-right"/>
         </div>
         @endif
+        
         <div class="col-md-8 @if(!Auth::user()->supplier_id) offset-2 @endif" >
             @if(!Auth::user()->supplier_id)
             <span class="float-right">
@@ -19,9 +20,7 @@
                 
                 <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to remove this supplier?')" href="{{ route('admin.destroySupplier',['id'=>$supplier->id]) }}">
                     <span class="fa fa-trash"></span> Delete 
-                </a>
-                
-
+                </a> 
             </span>
             @endif
             <h2>{{$supplier->name}}</h2>
@@ -43,6 +42,9 @@
                   <p>Email Address: <b>{{$supplier->email}}</b></p>
                   <p>Authorized Person: <b>{{$supplier->sales_representative}}</b></p>
                   <p>Date of Application: <b>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $supplier->created_at)->format('F d, Y')}}</b></p>
+                  @if($supplier->document_file)
+                  <p>Document: <a href="{{ route('admin.downloadFile',['id'=>$supplier->id]) }}">{{$supplier->document_file}}</a></p>
+                  @endif
                 </div>
             </div>
     
