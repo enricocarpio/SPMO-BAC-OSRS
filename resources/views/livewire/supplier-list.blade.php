@@ -95,7 +95,9 @@
         @endif
         </div>
         <div class="px-2 py-3">
-             
+            <div class="px-2 py-3">
+                {!! $suppliers->links() !!}
+            </div>
         </div>
     </div>
 </div>

@@ -9,6 +9,9 @@ use Livewire\WithPagination;
 class SupplierList extends Component
 {
     use WithPagination;
+    
+    protected $paginationTheme = 'bootstrap';
+    
     public $search;
     public $status;
 
