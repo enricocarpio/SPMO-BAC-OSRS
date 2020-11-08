@@ -29,13 +29,15 @@
                 </tr>
                 @else 
                 <tr>
-                    <th colspan="3" class="text-center">Company</th><th></th>
+                    <th colspan="4" class="text-center">Company</th><th></th>
 
                 </tr>
                 <tr>
                     <th class="px-4 pt-4 pb-3">Name</th>
                     <th class="px-4 pt-4 pb-3">Address</th> 
-                    <th class="px-4 pt-4 pb-3">Email Addreses</th>                           
+                    <th class="px-4 pt-4 pb-3">Email Address</th>                           
+                    <th class="px-4 pt-4 pb-3">Contact Number</th>                           
+                     
                     <th class="px-4 pt-4 pb-3"> Line Of Busineses</th>
                 </tr>
                 @endif
@@ -66,6 +68,11 @@
                     <td class="border-t  px-4 py-3">
                         {{$supplier->email}}
                     </td>
+
+                    <td class="border-t  px-4 py-3">
+                        {{$supplier->contact_number}}
+                    </td>
+
 
                     
                     <td class="border-t  px-4 py-3">
