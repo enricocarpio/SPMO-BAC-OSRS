@@ -39,7 +39,7 @@ class SupplierFormRequest extends FormRequest
             
         ];
 
-        if(!Auth::user()) $valid_data['document_file'] = 'required|file|mimes:zip|max:3072';
+        if(!Auth::user()) $valid_data['document_file'] = 'required|file|mimes:zip|max:3000';
       
         return $valid_data;
       

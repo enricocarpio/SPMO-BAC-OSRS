@@ -143,7 +143,7 @@
                 <small>{{$errors->first('document_file')}}</small>
               </div>
               <div class="col-sm-6">
-                <input type="file" class="form-control form-control-sm " id="document-file" name="document_file" value="{!! ($supplier) ? $supplier->name : old('document-file') !!}">
+                <input type="file" class="form-control form-control-sm " id="document_file" name="document_file" value="{!! ($supplier) ? $supplier->name : old('document-file') !!}">
               </div>
            
             </div>
@@ -178,6 +178,23 @@
 @endsection
 
 @section('scripts')
+<script>
+  $(document).ready(function(){
+      
+  $('#document_file').on('change', function() {
+  var size = this.files[0].size; // this is in bytes
+  
+  if(size > 3000000) // in bytes > mb
+  {
+      alert('File  must be 3MB and below');
+      $(this).val('');
+  }
+  
+  
+})
+});
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 @if(($supplier) ? $supplier->name : old('categories'))
 <script type="text/javascript">
