@@ -68,7 +68,11 @@
                                     <td>{{$title}}: <b>{{$eligibility['number']}}</b></td> 
                                     <td>{{$eligibility['date_issue']}}</td>
                                     <td>{{$eligibility['date_expiration']}}</td>
-                                    <td>{{ \Carbon\Carbon::createFromDate($eligibility['date_expiration'])->diffForHumans()}}</td>
+                                    <td>                                         
+                                         @if($title != 'BIR COR')
+                                            {{ \Carbon\Carbon::createFromDate($eligibility['date_expiration'])->diffForHumans()}}
+                                        @endif
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tr>
