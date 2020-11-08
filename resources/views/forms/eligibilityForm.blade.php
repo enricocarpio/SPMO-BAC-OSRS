@@ -1,5 +1,6 @@
 <div class="row">  
     <div class="offset-2  py-2 mt-3">
+        {{$supplier->document_file}}
     <form method="POST" action="{{ route('admin.processEligibilityStore',['id'=>$supplier->id]) }}">
         @csrf
     <table class="table table-bordered table-condensed">

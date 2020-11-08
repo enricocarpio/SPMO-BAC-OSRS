@@ -119,6 +119,7 @@
 
 
 @section('styles')
+
  
 <style>
     .bootstrap-select:not([class*="col-"]):not([class*="form-control form-control-sm"]):not(.input-group-btn) {
@@ -131,6 +132,23 @@
 @endsection
 
 @section('scripts')
+<script>
+  $(document).ready(function(){
+      
+  $('#document_file').on('change', function() {
+  var size = this.files[0].size; // this is in bytes
+  
+  if(size > 3000000) // in bytes > mb
+  {
+      alert('File to large must be 2MB and below');
+      $(this).val('');
+  }
+  
+  
+})
+});
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 @if(($supplier) ? $supplier->name : old('categories'))
 <script type="text/javascript">

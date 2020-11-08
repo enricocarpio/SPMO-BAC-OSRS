@@ -33,7 +33,7 @@
        <form method="POST" action="{{ route('becomeSupplierStore',['id'=>$supplier->id ?? null]) }}" enctype="multipart/form-data">
            @csrf
            <div class="form-group">
-             <label for="name" class="col-sm-3 col-form-label">Name</label>
+             <label for="name" class="col-sm-3 col-form-label">Company Name</label>
              <div class="float-right mr-3" style="color:red;">
                <small>{{$errors->first('name')}}</small>
              </div>
@@ -44,7 +44,7 @@
            </div>
    
            <div class="form-group">
-               <label for="address" class="col-sm-3 col-form-label">Address</label>
+               <label for="address" class="col-sm-3 col-form-label">Company Address</label>
                <div class="float-right mr-3" style="color:red;">
                    <small>{{$errors->first('address')}}</small>
                  </div>
