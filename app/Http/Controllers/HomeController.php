@@ -19,6 +19,12 @@ class HomeController extends Controller
     {
        $this->supplierRepo = $supplierRepository;
        $this->businessTypes = config('global.businessTypes');
+
+    }
+
+    public function checkAuth()
+    {
+        return auth()->user();
     }
 
     /**
@@ -38,19 +44,19 @@ class HomeController extends Controller
     public function becomeSupplierStore(SupplierFormRequest $request)
     {
         $this->supplierRepo->process_supplier($request);
-        return redirect('/become-supplier')->with('status','Successfully created initital data please wait for the administrator to contact you'); 
+        return redirect('/become-supplier')->with('status','Successfully created initital data please wait for the administrator to contact you');
     }
 
-    public function whiteList()                                             
+    public function whiteList()
     {
         return view('page/white-list');
-    }                               
+    }
 
     public function about()
     {
         return view('page/about');
     }
-   
+
     public function contact()
     {
         return view('page/contact');

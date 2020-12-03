@@ -14,9 +14,9 @@ class SupplierController extends Controller
     {
         $this->supplierRepo = $supplierRepository;
     }
-    
+
     public function index()
-    { 
+    {
         return view('supplier.home',[
             'supplier' => $this->supplierRepo->findSupplierViaId(auth()->user()->supplier_id),
             'eligibilities'=>$this->supplierRepo->getEligibilityData(auth()->user()->supplier_id) ?? '',
@@ -29,7 +29,7 @@ class SupplierController extends Controller
             'supplier' =>  $this->supplierRepo->findSupplierViaId(auth()->user()->supplier_id),
             'route' => 'supplier.settingsStore'
         ]);
-        
+
     }
 
     public function settingsStore(settingsFormRequest $request,$id)
@@ -37,5 +37,10 @@ class SupplierController extends Controller
         $this->supplierRepo->updateSetting($request,$id);
 
         return redirect()->route('supplier.settings')->with('success','Successfully updated profile');
+    }
+
+    public function uploadRequirement()
+    {
+        return view('supplier.upload_file');
     }
 }

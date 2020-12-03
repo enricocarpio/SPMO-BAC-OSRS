@@ -22,8 +22,8 @@ Route::get('/home', function () {
      if(auth()->user()->is_admin == 1) return redirect()->route('admin.home');
      else return redirect()->route('supplier.home');
 });
- 
- 
+
+
 
 Route::group([
     'prefix' => 'supplier',
@@ -32,8 +32,9 @@ Route::group([
     'middleware' => ['auth','supplier'],
 ], function() {
     Route::get('/home',[SupplierController::class,'index'])->name('home');
- 
+
     Route::get('/settings',[SupplierController::class, 'settings'])->name('settings');
+    Route::get('/upload/file',[SupplierController::class, 'uploadRequirement'])->name('uploadRequirement');
     Route::post('/settings/{id}',[SupplierController::class, 'settingsStore'])->name('settingsStore');
 });
 
@@ -62,17 +63,18 @@ Route::group([
 
     Route::get('/download/file/{id}',[AdminController::class, 'downloadFile'])->name('downloadFile');
 
+
+    Route::get('/report/{type}',[AdminController::class,'report'])->name('report');
+
 });
 
 
-Route::get('/',[HomeController::class, 'home'])->name('clientHome');
-
-Route::get('/white-list',[HomeController::class,'whiteList'])->name('whiteList');
-Route::get('/about-us',[HomeController::class,'about'])->name('about');
-Route::get('/contact-us',[HomeController::class,'contact'])->name('contact');
-Route::get('/become-supplier',[HomeController::class,'becomeSupplier'])->name('becomeSupplier');
-Route::post('/become-supplier',[HomeController::class,'becomeSupplierStore'])->name('becomeSupplierStore');
-
+Route::get('/',[HomeController::class, 'home'])->name('clientHome')->middleware('isLoggRestrict');
+Route::get('/white-list',[HomeController::class,'whiteList'])->name('whiteList')->middleware('isLoggRestrict');
+Route::get('/about-us',[HomeController::class,'about'])->name('about')->middleware('isLoggRestrict');
+Route::get('/contact-us',[HomeController::class,'contact'])->name('contact')->middleware('isLoggRestrict');
+Route::get('/become-supplier',[HomeController::class,'becomeSupplier'])->name('becomeSupplier')->middleware('isLoggRestrict');
+Route::post('/become-supplier',[HomeController::class,'becomeSupplierStore'])->name('becomeSupplierStore')->middleware('isLoggRestrict');
 
 
- 
+

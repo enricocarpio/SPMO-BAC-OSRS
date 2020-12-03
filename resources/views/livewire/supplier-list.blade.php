@@ -1,10 +1,10 @@
- <div>
+ <div class="bg-white px-3 py-3"">
     <div class="row py-3">
         <div class="col-md-4">
             <input type="text" class="form-control form-control-sm" wire:model.debounce.500ms="search"/>
         </div>
 
-         
+
         @if(auth()->user())
         <div class="col-md-3 offset-5">
             <select class="form-control form-control-sm"  wire:model="status" >
@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-md-12 py-3">
         @if(count($suppliers) > 0)
-        <table class="table table-bordered table-sm  table-hover">
+        <table class="table table-bordered table-sm  table-hover @guest shadow-lg @endguest" style="table-layout: fixed">
             <thead>
                 @if(auth()->user())
                 <tr>
@@ -27,18 +27,15 @@
                     <th class="py-2">Company Address</th>
                     <th class="py-2">Status</th>
                 </tr>
-                @else 
-                <tr>
-                    <th colspan="4" class="text-center">Company</th><th></th>
+                @else
 
-                </tr>
                 <tr>
                     <th class="px-4 pt-4 pb-3">Name</th>
-                    <th class="px-4 pt-4 pb-3">Address</th> 
-                    <th class="px-4 pt-4 pb-3">Email Address</th>                           
-                    <th class="px-4 pt-4 pb-3">Contact Number</th>                           
-                     
-                    <th class="px-4 pt-4 pb-3"> Line Of Busineses</th>
+                    <th class="px-4 pt-4 pb-3">Address</th>
+                    <th class="px-4 pt-4 pb-3">Email Address</th>
+                    <th class="px-4 pt-4 pb-3">Contact No</th>
+
+                    <th class="px-4 pt-4 pb-3">Business</th>
                 </tr>
                 @endif
             </thead>
@@ -52,19 +49,19 @@
                     <td class="py-2">{{$supplier->address}}</td>
                     <td class="py-2">{{$supplier->status == 1 ? 'Not Completed' : 'Completed'}}</td>
                 </tr>
-                @else 
+                @else
                 <tr>
                     <td class="border-t px-4 py-3 flex items-center focus:text-indigo-500">
                         {{$supplier->name}}
                     </td>
 
-                    
+
                     <td class="border-t  px-4 py-3">
                         {{$supplier->address}}
                     </td>
-                    
 
-                    
+
+
                     <td class="border-t  px-4 py-3">
                         {{$supplier->email}}
                     </td>
@@ -74,7 +71,7 @@
                     </td>
 
 
-                    
+
                     <td class="border-t  px-4 py-3">
                         {{$supplier->categories}}
                     </td>
@@ -84,20 +81,20 @@
             @endforeach
             </tbody>
         </table>
-        @else 
+        @else
         <div class="alert alert-danger">
-             
-                @if($search && !$status) 
-                   
+
+                @if($search && !$status)
+
                         No result found for '{{$search}}'
                         @elseif($search && $status)
-                        No result found for '{{$search}}' with status "<b>{{$status == '2' ? 'Completed' : 'Not Completed'}}</b>" 
+                        No result found for '{{$search}}' with status "<b>{{$status == '2' ? 'Completed' : 'Not Completed'}}</b>"
                         @elseif(!$search && $status)
                         No status found  with "<b>{{$status == '2' ? 'Completed' : 'Not Completed'}}</b>"
-                        @else 
+                        @else
                         No supplier found
                  @endif
-        
+
         </div>
         @endif
         </div>

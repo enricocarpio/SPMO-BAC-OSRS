@@ -19,12 +19,12 @@ class SupplierRepository
     }
 
     public function process_supplier($request)
-    {     
+    {
         $fileName = null;
 
         if(isset($request->document_file) && !empty($request->document_file))
         {
-            $fileName = time().'.'.$request->document_file->extension();  
+            $fileName = time().'.'.$request->document_file->extension();
             $request->document_file->move(public_path('file'), $fileName);
         }
 
@@ -42,9 +42,9 @@ class SupplierRepository
                 'document_file' => ($fileName == null) ? null : $fileName,
                 'business_type' => $request->business_type,
                 'status' => $this->step_1,
-               
+
             ]);
- 
+
         return $supplier->id;
     }
 
@@ -52,23 +52,23 @@ class SupplierRepository
     {
          $this->manipulate_eligibility($request,$id,$eligilities);
     }
-    
+
      public function manipulate_eligibility($request,$id,$eligibities)
     {
         $array_to_save = array();
-    
+
         $supplier = Supplier::findOrFail($id);
-         
+
         if($supplier) SupplierEligibility::where('supplier_id',$id)->delete();
-  
+
         foreach($eligibities as $title => $type)
         {
             $registration = $type.'number';
             $issue_date = $type.'date_issue';
             $expiration_date = $type.'date_expiration';
 
-               
-            
+
+
             $array_to_save = [
                 'supplier_id' =>  $id,
                 'permit_title' => $title,
@@ -77,17 +77,17 @@ class SupplierRepository
                 'issue_date'    => $request->$issue_date,
                 'expiration_date' => $request->$expiration_date,
             ];
-             
+
             SupplierEligibility::create($array_to_save);
-         
-        } 
+
+        }
 
         $supplier->status = 2;
         $supplier->save();
-      
+
     }
-     
- 
+
+
 
     public function getSupplierEligibilities($id)
     {
@@ -98,8 +98,8 @@ class SupplierRepository
     {
         return Supplier::findOrFail($id);
     }
-    
-    
+
+
     public function getEligibilityData($id)
     {
        $eligibilities = array();
@@ -115,7 +115,7 @@ class SupplierRepository
        return $eligibilities;
     }
 
-     
+
 
     public function getProfileInfo()
     {
@@ -169,7 +169,7 @@ class SupplierRepository
                 File::delete($image_path);
             }
         }
-        
+
 
         $supplier->delete();
     }
@@ -182,7 +182,7 @@ class SupplierRepository
         $updateUser =  User::find(auth()->user()->id);
         $updateUser->email = $request->email;
         if(!empty($request->password)) $updateUser->password = Hash::make($request->password);
- 
+
         //save only supplier
         if(auth()->user()->supplier_id)
         {
@@ -196,7 +196,7 @@ class SupplierRepository
 
 
             if(!empty($request->photo))
-            { 
+            {
                 if(auth()->user()->photo_path)
                 {
                     $image_path = public_path('images/'.auth()->user()->photo_path);
@@ -208,11 +208,13 @@ class SupplierRepository
                 $imageName = time().auth()->user()->id.'.'.$request->photo->extension();
                 $request->photo->move(public_path('images'), $imageName);
                 $updateUser->photo_path = $imageName;
-                
+
             }
-    
+
             $updateSupplier->save();
         }
-        $updateUser->save();        
+        $updateUser->save();
     }
+
+  
 }

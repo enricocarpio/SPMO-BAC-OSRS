@@ -1,15 +1,15 @@
 
-    <div class="row px-2 py-3"> 
+    <div class="row px-2 py-3">
         @if(Auth::user()->supplier_id && Auth::user()->photo_path)
         <div class="col-md-3 offset-1" >
             <img src="{{ asset('images/'.auth()->user()->photo_path) }}" class="img-thumbnail float-right"/>
         </div>
         @endif
         <div class="col-md-6 @if(!Auth::user()->photo_path) offset-3 @endif">
-           
-    
-       <h3>Supplier Information</h3>
-       
+
+
+       <h3>@if(auth()->user()->supplier_id) Supplier Information @else Admin Information @endif</h3>
+
        @if($errors->any())
        <div class="alert alert-danger">
            <ul>
@@ -21,16 +21,16 @@
        @endif
       <form class="mt-4"  method="POST" action="{{ route($route,['id'=>$supplier->id]) }}" enctype="multipart/form-data" >
         @csrf
- 
+
         @if(auth()->user()->supplier_id)
         <div class="form-group row">
-           
+
             <label for="staticEmail" class="col-sm-4 col-form-label">Logo</label>
             <div class="col-sm-8">
-              
+
               <input type="file" class="form-control form-control-sm" placeholder="Enter email" id="email" name="photo" />
             </div>
-          
+
           </div>
 
           @endif
@@ -56,7 +56,7 @@
                 <input type="text" class="form-control form-control-sm" placeholder="Enter sales representative" id="sales_representative" name="sales_representative" value="{{ $supplier->sales_representative }}">
             </div>
           </div>
-          
+
 
         <div class="form-group row">
             <label for="contact_number" class="col-sm-4 col-form-label">Contact Number</label>
@@ -67,18 +67,18 @@
 
           @endif
           <div class="form-group row">
-           
+
             <label for="password" class="col-sm-4 col-form-label">Password</label>
             <div class="col-sm-8">
-              
+
               <input type="password" class="form-control form-control-sm" placeholder="Password" id="password" name="password" />
             </div>
-          
+
           </div>
 
 
           <div class="form-group row">
-           
+
             <div class="col-sm-8 offset-4">
                  <button class="btn btn-success">Update</button>
             </div>
@@ -87,9 +87,9 @@
       </form>
 
     </div>
-    
- 
+
+
 </div>
 <hr />
- 
+
 </div>

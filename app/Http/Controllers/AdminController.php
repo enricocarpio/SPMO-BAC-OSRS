@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SupplierExport;
 use App\Http\Requests\settingsFormRequest;
 use App\Http\Requests\SupplierEligibilityRequest;
 use App\Http\Requests\SupplierFormRequest;
 use App\Mail\SendMail;
+use App\Models\Supplier;
 use App\Models\User;
 use App\Repositories\SupplierRepository;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use PDF;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response as FacadesResponse;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -25,7 +27,7 @@ class AdminController extends Controller
         $this->businessTypes = config('global.businessTypes');
         $this->eligibilityTypes = config('global.eligibilityTypes');
     }
-    
+
     public function index()
     {
         return view('admin.home');
@@ -34,7 +36,7 @@ class AdminController extends Controller
     public function processSupplier($id = false)
     {
         $supplier = ($id) ? $this->supplierRepo->findSupplierViaId($id) : null;
-  
+
         return view('admin.processSupplier',[
             'supplier' => $supplier,
             'categories' => $this->supplierRepo->categories(),
@@ -92,13 +94,13 @@ class AdminController extends Controller
              'supplier' => $supplier,
              'route' => 'admin.settingsStore'
          ]);
-         
+
      }
- 
+
      public function settingsStore(settingsFormRequest $request,$id)
      {
          $this->supplierRepo->updateSetting($request,$id);
- 
+
          return redirect()->route('admin.settings')->with('success','Successfully updated profile');
      }
 
@@ -108,5 +110,16 @@ class AdminController extends Controller
         $file = public_path()."/file/".$supplier->document_file;
         $headers = array('Content-Type: application/zip',);
         return FacadesResponse::download($file, $supplier->document_file ,$headers);
+    }
+
+    public function report($type)
+    {
+        if(!$type) return;
+        if($type == 'excel') return Excel::download(new SupplierExport, 'supplier-list.xlsx');
+        else if($type =='pdf')
+        {
+            $pdf = PDF::loadView('exports.supplier-pdf',['suppliers' => Supplier::get()])->setPaper('a2', 'landscape');
+            return $pdf->download('supplier-list.pdf');
+        }
     }
 }

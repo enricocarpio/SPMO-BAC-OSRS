@@ -9,9 +9,9 @@ use Livewire\WithPagination;
 class SupplierList extends Component
 {
     use WithPagination;
-    
+
     protected $paginationTheme = 'bootstrap';
-    
+
     public $search;
     public $status;
 
@@ -27,7 +27,7 @@ class SupplierList extends Component
     public function getSuppliers()
     {
         $query = Supplier::select($this->select_file);
- 
+
         if($this->search)
         {
             $search_field = '%'.$this->search.'%';
@@ -37,18 +37,18 @@ class SupplierList extends Component
                     ->orWhere('categories','like',$search_field);
             });
         }
-
+        if(!auth()->user()) $query->where('status','2');
         if($this->status) $query->where('status',$this->status);
-        
+
         return $query->paginate(config('global.totalPagination'));
     }
 
     public function updateSupplier($supplierId,$status)
-    { 
- 
+    {
+
         if($status == '1') $route = 'admin.processEligibility';
         else $route = 'admin.profile';
-       
+
         return redirect()->route($route,['id'=>$supplierId]);
     }
 
