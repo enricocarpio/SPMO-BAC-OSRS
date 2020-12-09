@@ -26,6 +26,7 @@ class FileList extends Component
                 if($this->search) $q->where('name','like','%'.$this->search.'%');
         }]);
 
+        $query->orderBy('created_at','desc');
         return $query->paginate(config('global.totalPagination'));
     }
 
