@@ -1,13 +1,13 @@
 
-    <div class="row mt-5  px-2 py-3">
+    <div class="row mt-5  px-4 py-4">
 
         @if(Auth::user()->supplier_id && Auth::user()->photo_path)
         <div class="col-md-1">
-            <img src="{{ asset('images/'.auth()->user()->photo_path) }}" class="img-thumbnail float-right"/>
+            <img src="{{ asset('images/'.auth()->user()->photo_path) }}"  alt="pic" class="img-thumbnail float-right"/>
         </div>
         @endif
 
-        <div class="@if(!Auth::user()->supplier_id) col-md-12 @elseif(!Auth::user()->photo_path) col-md-12  @else col-md-11 @endif" >
+        <div class="@if(!Auth::user()->supplier_id) col-md-12  @elseif(!Auth::user()->photo_path) col-md-12  @else col-md-11 @endif" >
             @if(!Auth::user()->supplier_id)
             <span class="float-right">
                 <a class="btn btn-success btn-sm" href="{{ route('admin.processSupplier',['id'=>$supplier->id]) }}">

@@ -1,7 +1,9 @@
  <div class="bg-white px-3 py-3"">
+
     <div class="row py-3">
         <div class="col-md-4">
-            <input type="text" class="form-control form-control-sm" wire:model.debounce.500ms="search"/>
+            <label for="search">Search</label>
+            <input type="text" class="form-control form-control-sm" wire:model.debounce.500ms="search" id="search"/>
         </div>
 
 

@@ -10,20 +10,18 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+{{--    <script src="{{ asset('js/app.js') }}"></script>--}}
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('layout/tether/tether.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('layout/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('layout/bootstrap/css/bootstrap-grid.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('layout/bootstrap/css/bootstrap-reboot.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('layout/dropdown/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('layout/socicon/css/styles.css') }}">
-    <link rel="stylesheet" href="{{ asset('layout/theme/css/style.css') }}">
-    <link rel="preload" as="style" href="{{ asset('layout/mobirise/css/mbr-additional.css')}}">
+{{--        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">--}}
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" type="text/css">
+    <link rel="stylesheet" href="{{ asset('layout/tether/tether.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('layout/bootstrap/css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('layout/bootstrap/css/bootstrap-grid.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('layout/bootstrap/css/bootstrap-reboot.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('layout/dropdown/css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('layout/socicon/css/styles.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('layout/theme/css/style.css') }}" type="text/css">
+{{--    <link rel="preload" as="style" href="{{ asset('layout/mobirise/css/mbr-additional.css')}}">--}}
     <link rel="stylesheet" href="{{ asset('layout//mobirise/css/mbr-additional.css') }}" type="text/css">
 
 
@@ -38,7 +36,7 @@
             <div class="navbar-brand">
                 <span class="navbar-logo">
                     <a href="{{ route('clientHome') }}">
-                        <img src="{{ asset('layout/logo.png') }}"  style="height: 3.8rem;">
+                        <img src="{{ asset('layout/logo.png') }}"  alt="logo" style="height: 3.8rem; width: 3.7">
                     </a>
                 </span>
                 <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-7"
@@ -93,20 +91,16 @@
     style="background-color: #fff; display: none!important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; color:#aaa; font-size:12px; padding: 0; align-items: center; display: flex;">
     <a href="https://mobirise.site/v" style="flex: 1 1; height: 3rem; padding-left: 1rem;"></a>
  </section>
-{{--<script src="{{ asset('layout/web/assets/jquery/jquery.min.js')}}"></script>--}}
+<script src="{{ asset('layout/web/assets/jquery/jquery.min.js')}}"></script>
 <script src="{{ asset('layout/popper/popper.min.js') }}"></script>
-<script src="{{ asset('layout//tether/tether.min.js')}}"></script>
+{{--<script src="{{ asset('layout//tether/tether.min.js')}}"></script>--}}
 <script src="{{ asset('layout//bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('layout//smoothscroll/smooth-scroll.js') }}"></script>
-<script src="{{ asset('layout//parallax/jarallax.min.js') }}"></script>
+{{--<script src="{{ asset('layout//smoothscroll/smooth-scroll.js') }}"></script>--}}
+{{--<script src="{{ asset('layout//parallax/jarallax.min.js') }}"></script>--}}
 <script src="{{ asset('layout//dropdown/js/nav-dropdown.js') }}"></script>
 <script src="{{ asset('layout//dropdown/js/navbar-dropdown.js') }}"></script>
 <script src="{{ asset('layout//touchswipe/jquery.touch-swipe.min.js') }}"></script>
 <script src="{{ asset('layout//theme/js/script.js') }}"></script>
-
-
-
-
 @yield('scripts')
 @livewireScripts
 </body>

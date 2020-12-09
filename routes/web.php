@@ -35,6 +35,7 @@ Route::group([
 
     Route::get('/settings',[SupplierController::class, 'settings'])->name('settings');
     Route::get('/upload/file',[SupplierController::class, 'uploadRequirement'])->name('uploadRequirement');
+    Route::post('/upload/file',[SupplierController::class, 'uploadRequirementStore']);
     Route::post('/settings/{id}',[SupplierController::class, 'settingsStore'])->name('settingsStore');
 });
 
@@ -62,6 +63,8 @@ Route::group([
     Route::post('/settings/{id}',[AdminController::class, 'settingsStore'])->name('settingsStore');
 
     Route::get('/download/file/{id}',[AdminController::class, 'downloadFile'])->name('downloadFile');
+    Route::get('/downloadFileViaUploaded/file/{id}',[AdminController::class, 'downloadFileViaUploaded'])->name('downloadFileViaUploaded');
+    Route::get('/uploaded/files',[AdminController::class, 'uploadFiles'])->name('uploadFiles');
 
 
     Route::get('/report/{type}',[AdminController::class,'report'])->name('report');

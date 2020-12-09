@@ -112,6 +112,15 @@ class AdminController extends Controller
         return FacadesResponse::download($file, $supplier->document_file ,$headers);
     }
 
+    public function downloadFileViaUploaded($id){
+
+        $supplier = $this->supplierRepo->findSupplierFileViaId($id);
+        $file = public_path()."/file/".$supplier->filename;
+        $headers = array('Content-Type: application/zip',);
+        return FacadesResponse::download($file, $supplier->document_file ,$headers);
+    }
+
+
     public function report($type)
     {
         if(!$type) return;
@@ -121,5 +130,10 @@ class AdminController extends Controller
             $pdf = PDF::loadView('exports.supplier-pdf',['suppliers' => Supplier::get()])->setPaper('a2', 'landscape');
             return $pdf->download('supplier-list.pdf');
         }
+    }
+
+    public function uploadFiles()
+    {
+        return view('admin.uploadFiles');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\settingsFormRequest;
+use App\Http\Requests\UploadFileRequest;
 use App\Repositories\SupplierRepository;
 use Illuminate\Http\Request;
 
@@ -42,5 +43,11 @@ class SupplierController extends Controller
     public function uploadRequirement()
     {
         return view('supplier.upload_file');
+    }
+
+    public function uploadRequirementStore(UploadFileRequest $request)
+    {
+        $this->supplierRepo->uploadFileSupplier($request);
+        return redirect()->route('supplier.home');
     }
 }

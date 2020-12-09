@@ -4,6 +4,7 @@ namespace App\Repositories;
 use App\Models\Category;
 use App\Models\Supplier;
 use App\Models\SupplierEligibility;
+use App\Models\SupplierFile;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
@@ -97,6 +98,10 @@ class SupplierRepository
     public function findSupplierViaId($id)
     {
         return Supplier::findOrFail($id);
+    }
+    public function findSupplierFileViaId($id)
+    {
+        return SupplierFile::findOrFail($id);
     }
 
 
@@ -216,5 +221,15 @@ class SupplierRepository
         $updateUser->save();
     }
 
-  
+    public function uploadFileSupplier($request)
+    {
+      $fileName = time().'.'.$request->document_file->extension();
+      $request->document_file->move(public_path('file'), $fileName);
+
+      SupplierFile::create([
+          'supplier_id' => auth()->user()->supplier_id,
+          'filename' => $fileName,
+      ]);
+    }
+
 }
