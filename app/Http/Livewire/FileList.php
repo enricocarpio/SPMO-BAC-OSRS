@@ -25,7 +25,7 @@ class FileList extends Component
         $query->orderBy('created_at','desc');
         return $query->paginate(config('global.totalPagination'));
     }
- 
+
     public function render()
     {
         return view('livewire.file-list',[
